@@ -8,7 +8,8 @@ import { calculateIndices } from "../utils/calcIndices.js";
 import { HM_CONSTANTS } from "../utils/hpiConstants.js";
 dotenv.config();
 
-const upload = multer({ dest: "uploads/" });
+// Use in-memory storage to avoid relying on container filesystem (e.g., Render)
+const upload = multer({ storage: multer.memoryStorage() });
 
 export const fetchData = async (req, res) => {
   try {
@@ -188,7 +189,9 @@ export const uploadCSVRaw = [
 
       const results = [];
 
-      fs.createReadStream(req.file.path)
+      // Parse CSV from memory buffer
+      const { Readable } = await import("stream");
+      Readable.from(req.file.buffer)
         .pipe(csv())
         .on("data", (row) => results.push(row))
         .on("end", async () => {
