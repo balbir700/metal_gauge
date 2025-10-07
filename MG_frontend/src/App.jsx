@@ -51,38 +51,20 @@ function App() {
             <Route path="/about-us" element={<AboutUsPage />} />
 
             {/* Protected routes - authentication required */}
-            <Route
-              path="/home"
-              element={
-                <AuthWrapper user={user}>
-                  <HomePage />
-                </AuthWrapper>
-              }
-            />
+            <Route path="/home" element={<HomePage />} />
             <Route
               path="/analysis/*"
               element={
-                // <AuthWrapper user={user}>
+                //
                 <AnalysisPage />
-                // </AuthWrapper>
+                //
               }
             />
             <Route
               path="/predictive-analysis/*"
-              element={
-                <AuthWrapper user={user}>
-                  <PredictiveAnalysisPage />
-                </AuthWrapper>
-              }
+              element={<PredictiveAnalysisPage />}
             />
-            <Route
-              path="/"
-              element={
-                <AuthWrapper user={user}>
-                  <HomePage />
-                </AuthWrapper>
-              }
-            />
+            <Route path="/" element={<HomePage />} />
           </Routes>
         </div>
       </div>
