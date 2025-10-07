@@ -1,0 +1,86 @@
+[
+  {
+    "_id": "66f3a1c9b12e8f0012f45abc",
+    "siteArea": "Pune Riverbank",
+    "State": "Maharashtra",
+    "siteCode": "PN-001",
+    "location": {
+      "lat": 18.5204,
+      "lon": 73.8567
+    },
+    "tests": [
+      {
+        "metals": [
+          { "metal": "Lead", "values": 15, "iGeo": 1.2, "CF": 3.5 },
+          { "metal": "Cadmium", "values": 5, "iGeo": 0.8, "CF": 2.1 },
+          { "metal": "Zinc", "values": 12000, "iGeo": 2.4, "CF": 5.0 }
+        ],
+        "HPI": 142.3,
+        "HEI": 7.5
+      }
+    ]
+  },
+  {
+    "_id": "66f3a1c9b12e8f0012f45abd",
+    "siteArea": "Yamuna Floodplain",
+    "State": "Delhi",
+    "siteCode": "DL-002",
+    "location": {
+      "lat": 28.6139,
+      "lon": 77.209
+    },
+    "tests": [
+      {
+        "metals": [
+          { "metal": "Lead", "values": 22, "iGeo": 1.8, "CF": 4.0 },
+          { "metal": "Cadmium", "values": 3, "iGeo": 0.6, "CF": 1.5 },
+          { "metal": "Mercury", "values": 1.2, "iGeo": 0.4, "CF": 0.9 }
+        ],
+        "HPI": 198.7,
+        "HEI": 12.1
+      }
+    ]
+  },
+  {
+    "_id": "66f3a1c9b12e8f0012f45abe",
+    "siteArea": "Ganga at Varanasi",
+    "State": "Uttar Pradesh",
+    "siteCode": "UP-003",
+    "location": {
+      "lat": 25.3176,
+      "lon": 82.9739
+    },
+    "tests": [
+      {
+        "metals": [
+          { "metal": "Lead", "values": 10, "iGeo": 0.9, "CF": 2.2 },
+          { "metal": "Chromium", "values": 4, "iGeo": 1.1, "CF": 3.0 },
+          { "metal": "Arsenic", "values": 2.5, "iGeo": 0.7, "CF": 1.8 }
+        ],
+        "HPI": 120.5,
+        "HEI": 6.3
+      }
+    ]
+  },
+  {
+    "_id": "66f3a1c9b12e8f0012f45abf",
+    "siteArea": "Sabarmati Riverfront",
+    "State": "Gujarat",
+    "siteCode": "GJ-004",
+    "location": {
+      "lat": 23.0225,
+      "lon": 72.5714
+    },
+    "tests": [
+      {
+        "metals": [
+          { "metal": "Zinc", "values": 9000, "iGeo": 1.5, "CF": 3.7 },
+          { "metal": "Nickel", "values": 2, "iGeo": 0.6, "CF": 1.2 },
+          { "metal": "Copper", "values": 6, "iGeo": 0.8, "CF": 1.6 }
+        ],
+        "HPI": 87.9,
+        "HEI": 4.2
+      }
+    ]
+  }
+]

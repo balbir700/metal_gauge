@@ -1,0 +1,141 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Core scale from the provided palette image */
+  --radius: 0.625rem;
+  --background: #F6FAFD; /* light surface */
+  --foreground: #0A1931; /* primary ink */
+  --card: #FFFFFF;
+  --card-foreground: #0A1931;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A1931;
+  --primary: #0A1931; /* deep navy */
+  --primary-foreground: #F6FAFD; /* on-primary */
+  --secondary: #1A3D63; /* dark blue */
+  --secondary-foreground: #F6FAFD;
+  --muted: #B3CFE5; /* pale blue */
+  --muted-foreground: #1A3D63;
+  --accent: #4A7FA7; /* mid blue accent */
+  --accent-foreground: #F6FAFD;
+  --destructive: #E85C5C; /* keep a clear danger */
+  --border: #B3CFE580; /* translucent border */
+  --input: #B3CFE5;
+  --ring: #4A7FA7;
+  /* Charts mapped to the theme */
+  --chart-1: #4A7FA7; /* accent */
+  --chart-2: #1A3D63; /* secondary */
+  --chart-3: #0A1931; /* primary */
+  --chart-4: #B3CFE5; /* muted */
+  --chart-5: #6AA6C6; /* derived tint */
+  /* Sidebar surfaces */
+  --sidebar: #F6FAFD;
+  --sidebar-foreground: #0A1931;
+  --sidebar-primary: #0A1931;
+  --sidebar-primary-foreground: #F6FAFD;
+  --sidebar-accent: #B3CFE5;
+  --sidebar-accent-foreground: #0A1931;
+  --sidebar-border: #B3CFE580;
+  --sidebar-ring: #4A7FA7;
+}
+
+.dark {
+  --background: #0A1931;
+  --foreground: #F6FAFD;
+  --card: #1A3D63;
+  --card-foreground: #F6FAFD;
+  --popover: #1A3D63;
+  --popover-foreground: #F6FAFD;
+  --primary: #B3CFE5; /* lighter primary in dark for contrast */
+  --primary-foreground: #0A1931;
+  --secondary: #4A7FA7;
+  --secondary-foreground: #F6FAFD;
+  --muted: #0E2746;
+  --muted-foreground: #B3CFE5;
+  --accent: #4A7FA7;
+  --accent-foreground: #F6FAFD;
+  --destructive: #E85C5C;
+  --border: #FFFFFF1A;
+  --input: #FFFFFF26;
+  --ring: #B3CFE5;
+  --chart-1: #B3CFE5;
+  --chart-2: #4A7FA7;
+  --chart-3: #6AA6C6;
+  --chart-4: #1A3D63;
+  --chart-5: #0A1931;
+  --sidebar: #0A1931;
+  --sidebar-foreground: #F6FAFD;
+  --sidebar-primary: #B3CFE5;
+  --sidebar-primary-foreground: #0A1931;
+  --sidebar-accent: #0E2746;
+  --sidebar-accent-foreground: #F6FAFD;
+  --sidebar-border: #FFFFFF1A;
+  --sidebar-ring: #B3CFE5;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image: radial-gradient(1200px 600px at 10% -10%, #B3CFE522, transparent 60%),
+      radial-gradient(1000px 500px at 110% 10%, #4A7FA711, transparent 50%);
+  }
+}
+
+body {
+  font-size: larger;
+}
+
+.centered-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 30px auto 0 auto;
+  padding: 0 12px;
+  background: color-mix(in sRGB, var(--card) 85%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(10, 25, 49, 0.12);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+}

@@ -1,0 +1,92 @@
+{
+  "processedResults": [
+    {
+      "siteArea": "Pune bosdi",
+      "State": "Maharashtra",
+      "siteCode": "PN-005",
+      "lat": "18.5204",
+      "lon": "73.8567",
+      "metals": [
+        {
+          "metal": "Pb",
+          "values": 15,
+          "CF": 1,
+          "Igeo": -1,
+          "EF": 0.75,
+          "ERI": 15
+        },
+        {
+          "metal": "Cd",
+          "values": 6,
+          "CF": 0.6,
+          "Igeo": 3,
+          "EF": 12,
+          "ERI": 3.6
+        },
+        {
+          "metal": "Zn",
+          "values": 11800,
+          "CF": 0.787,
+          "Igeo": 6.812,
+          "EF": 168.571,
+          "ERI": 9286.6
+        },
+        {
+          "metal": "Cu",
+          "values": 70,
+          "CF": 0.047,
+          "Igeo": 0.9,
+          "EF": 2.8,
+          "ERI": 3.29
+        },
+        {
+          "metal": "Ni",
+          "values": 12,
+          "CF": 0.12,
+          "Igeo": -2.322,
+          "EF": 0.3,
+          "ERI": 1.44
+        },
+        {
+          "metal": "Mn",
+          "values": 210,
+          "CF": 0.7,
+          "Igeo": -2.602,
+          "EF": 0.247,
+          "ERI": 147
+        },
+        {
+          "metal": "As",
+          "values": 22,
+          "CF": 0.44,
+          "Igeo": 0.553,
+          "EF": 2.2,
+          "ERI": 9.68
+        },
+        {
+          "metal": "Cr",
+          "values": 5,
+          "CF": 0.05,
+          "Igeo": -4.755,
+          "EF": 0.056,
+          "ERI": 0.25
+        }
+      ],
+      "date": "2025-10-01",
+      "HPI": 44.586,
+      "HEI": 3.743,
+      "aiAnalysis": {
+        "siteInterpretation": "The Pune site exhibits extremely high Zinc (Zn) concentrations (11800 mg/kg), significantly exceeding safe limits, alongside elevated Cadmium (Cd) and Arsenic (As).\nOverall heavy metal pollution is confirmed by high HPI (44.586) and HEI (3.743) values, indicating substantial anthropogenic input.",
+        "siteImpact": "High levels of Zn, Cd, and As pose significant ecological risks, potentially harming soil organisms, inhibiting plant growth, and contaminating local food chains.\nThis heavy metal burden also presents potential health risks to human populations through direct exposure or consumption of contaminated produce and water.",
+        "policyRecommendations": "Mandate immediate detailed source identification and comprehensive risk assessment for the heavy metal contamination, especially Zinc, in the Pune bosdi area.\nImplement targeted remediation strategies for high-risk zones, coupled with stricter industrial discharge regulations and continuous environmental monitoring to prevent further pollution."
+      },
+      "indexFindings": {
+        "igeo_Finding": "Most metals (Pb, Ni, Mn, Cr) show uncontaminated levels, with Cu and As ranging from uncontaminated to moderately contaminated. However, Cadmium (Cd) is moderately to strongly contaminated, and Zinc (Zn) is extremely contaminated.",
+        "cf_Finding": "All metals exhibit low contamination factors (CF < 1), indicating minimal overall contamination relative to their respective background levels.",
+        "ef_Finding": "While most metals (Pb, Ni, Mn, Cr) show no enrichment, Cu and As display minor enrichment. Cadmium (Cd) exhibits significant enrichment, and Zinc (Zn) presents very high enrichment, strongly suggesting anthropogenic sources for these two.",
+        "eri_Finding": "Most metals (Pb, Cd, Cu, Ni, As, Cr) pose a low ecological risk, with Manganese (Mn) also in the low risk category but close to the moderate risk threshold. Critically, Zinc (Zn) presents an extremely high ecological risk."
+      }
+    }
+  ],
+  "message": "CSV data uploaded successfully"
+}

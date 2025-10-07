@@ -1,0 +1,159 @@
+{
+    "success": true,
+    "sites": [
+        {
+            "_id": "68d984a9fae82245d13df0eb",
+            "siteArea": "Pune Riverbank",
+            "State": "Maharashtra",
+            "siteCode": "PN-007",
+            "location": {
+                "lat": 18.5100,
+                "lon": 73.8600
+            },
+            "latestTest": {
+                "date": "2024-09-10T00:00:00.000Z",
+                "metals": [
+                    {
+                        "metal": "Pb",
+                        "values": 15,
+                        "CF": 1,
+                        "Igeo": -1,
+                        "_id": "68d984bdfae82245d13df0ed"
+                    },
+                    {
+                        "metal": "Cd",
+                        "values": 6,
+                        "CF": 0.6,
+                        "Igeo": 3,
+                        "_id": "68d984bdfae82245d13df0ee"
+                    },
+                    {
+                        "metal": "Zn",
+                        "values": 1100,
+                        "CF": 0.073,
+                        "Igeo": 3.389,
+                        "_id": "68d984bdfae82245d13df0ef"
+                    },
+                    {
+                        "metal": "Cu",
+                        "values": 70,
+                        "CF": 0.047,
+                        "Igeo": 0.9,
+                        "_id": "68d984bdfae82245d13df0f0"
+                    },
+                    {
+                        "metal": "Ni",
+                        "values": 12,
+                        "CF": 0.12,
+                        "Igeo": -2.322,
+                        "_id": "68d984bdfae82245d13df0f1"
+                    },
+                    {
+                        "metal": "Mn",
+                        "values": 210,
+                        "CF": 0.7,
+                        "Igeo": -2.602,
+                        "_id": "68d984bdfae82245d13df0f2"
+                    },
+                    {
+                        "metal": "As",
+                        "values": 22,
+                        "CF": 0.44,
+                        "Igeo": 0.553,
+                        "_id": "68d984bdfae82245d13df0f3"
+                    },
+                    {
+                        "metal": "Cr",
+                        "values": 5,
+                        "CF": 0.05,
+                        "Igeo": -4.755,
+                        "_id": "68d984bdfae82245d13df0f4"
+                    }
+                ],
+                "HPI": 44.553,
+                "HEI": 3.03,
+                "siteInterpretation": "The Pune Riverbank site exhibits significant heavy metal enrichment (HEI: 3.03), with notably high concentrations of Zinc (1100), Arsenic (22), and Cadmium (6).\nThis data, coupled with an HPI of 44.553, indicates moderate to significant overall heavy metal pollution at the site.",
+                "siteImpact": "Elevated levels of Zn, As, and Cd pose substantial risks to aquatic ecosystems, potentially leading to bioaccumulation in fish and adverse effects on local biodiversity.\nHuman health could be impacted through direct exposure or consumption of contaminated water and food sources from the river.",
+                "policyRecommendations": "Prioritize immediate source identification for Zinc, Arsenic, and Cadmium, and implement targeted remediation strategies to reduce pollutant discharge.\nEstablish a robust long-term monitoring program for water and sediment quality, coupled with public awareness campaigns on potential health risks and safe resource use.",
+                "_id": "68d984bdfae82245d13df0ec"
+            }
+        },
+        {
+            "_id": "68d98cea718bab1fb883e076",
+            "siteArea": "Dighi",
+            "State": "Maharashtra",
+            "siteCode": "PN-010",
+            "location": {
+                "lat": 18.5204,
+                "lon": 73.8567
+            },
+            "latestTest": {
+                "date": "2024-09-10T00:00:00.000Z",
+                "metals": [
+                    {
+                        "metal": "Pb",
+                        "values": 155,
+                        "CF": 10.333,
+                        "Igeo": 2.369,
+                        "_id": "68d98cf8718bab1fb883e078"
+                    },
+                    {
+                        "metal": "Cd",
+                        "values": 100,
+                        "CF": 10,
+                        "Igeo": 7.059,
+                        "_id": "68d98cf8718bab1fb883e079"
+                    },
+                    {
+                        "metal": "Zn",
+                        "values": 1100,
+                        "CF": 0.073,
+                        "Igeo": 3.389,
+                        "_id": "68d98cf8718bab1fb883e07a"
+                    },
+                    {
+                        "metal": "Cu",
+                        "values": 780,
+                        "CF": 0.52,
+                        "Igeo": 4.379,
+                        "_id": "68d98cf8718bab1fb883e07b"
+                    },
+                    {
+                        "metal": "Ni",
+                        "values": 12,
+                        "CF": 0.12,
+                        "Igeo": -2.322,
+                        "_id": "68d98cf8718bab1fb883e07c"
+                    },
+                    {
+                        "metal": "Mn",
+                        "values": 210,
+                        "CF": 0.7,
+                        "Igeo": -2.602,
+                        "_id": "68d98cf8718bab1fb883e07d"
+                    },
+                    {
+                        "metal": "As",
+                        "values": 22,
+                        "CF": 0.44,
+                        "Igeo": 0.553,
+                        "_id": "68d98cf8718bab1fb883e07e"
+                    },
+                    {
+                        "metal": "Cr",
+                        "values": 50,
+                        "CF": 0.5,
+                        "Igeo": -1.433,
+                        "_id": "68d98cf8718bab1fb883e07f"
+                    }
+                ],
+                "HPI": 1824.783,
+                "HEI": 22.687,
+                "siteInterpretation": "Dighi (MP) exhibits severe heavy metal contamination, indicated by extremely high Pb, Cd, Zn, Cu, and As levels.\nThe HPI (1824.783) and HEI (22.687) confirm critical pollution, significantly surpassing safe thresholds.",
+                "siteImpact": "This contamination poses a high risk to ecosystem health, impacting soil fertility, water quality, and local biodiversity.\nPotential human health impacts include long-term chronic diseases from exposure via the food chain or direct contact.",
+                "policyRecommendations": "Implement urgent, comprehensive site investigation to identify pollution sources and establish strict remediation protocols.\nEnforce stringent industrial waste management regulations and initiate health risk assessments for local communities.",
+                "_id": "68d98cf8718bab1fb883e077"
+            }
+        }
+    ]
+}
