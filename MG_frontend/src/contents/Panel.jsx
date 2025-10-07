@@ -1,5 +1,5 @@
 import React from "react";
-import BarGraph from "./BarGraph"; // Ensure file is BarGraph.jsx
+import BarGraph from "@/contents/Bargraph"; // Ensure file is BarGraph.jsx
 import axiosInstance from "@/utils/axiosInstance";
 import {
   LineChart,
