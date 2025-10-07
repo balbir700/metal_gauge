@@ -1,7 +1,10 @@
 import axios from "axios";
 
+// Prefer environment-provided API URL; fall back to local dev
+const apiBaseUrl = "https://mg-backend-dvl9.onrender.com".replace(/\/$/, "");
+
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: apiBaseUrl,
   timeout: 60000,
   withCredentials: true, // Enable cookies
 });
@@ -15,7 +18,7 @@ axiosInstance.interceptors.request.use(
 
     // Don't set Content-Type for FormData - let axios handle it
     if (config.data instanceof FormData) {
-      delete config.headers['Content-Type'];
+      delete config.headers["Content-Type"];
     }
 
     return config;
