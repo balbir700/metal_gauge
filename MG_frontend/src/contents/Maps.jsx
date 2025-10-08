@@ -1,6 +1,5 @@
 // src/contents/Maps.jsx
 import React, { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Loader2Icon } from "lucide-react";
 import "leaflet/dist/leaflet.css";
 import ChoroplethMap from "@/contents/ChoroplethMap";
@@ -99,7 +98,6 @@ export default function Maps() {
   const [selectedState, setSelectedState] = useState("");
   const [districts, setDistricts] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [submitCount, setSubmitCount] = useState(0);
   const [selectedSite, setSelectedSite] = useState(null);
@@ -108,10 +106,40 @@ export default function Maps() {
 
   // Fetch all sites on component mount
   useEffect(() => {
-    fetchAllSites();
+    fetchAllSites("");
   }, []);
 
-  const handleStateChange = (e) => {
+  // Fetch sites for the given state
+const fetchAllSites = async (stateName) => {
+  setSitesLoading(true);
+  try {
+    if (!stateName) {
+      setAllSites([]);
+      setSitesLoading(false);
+      return;
+    }
+    const url = `/api/data/map/${stateName}`;
+    const response = await axiosInstance.get(url);
+
+    console.log("Site API response:", response.data);
+    
+    if (response.data && response.data.sites) {
+      setAllSites(response.data.sites);
+    } else {
+      setAllSites([]);
+    }
+  } catch (error) {
+    setAllSites([]);
+  } finally {
+    setSitesLoading(false);
+    setHasSubmitted(true);
+    setSubmitCount((c) => c + 1);
+  }
+};
+
+
+  // Handle state change and fetch sites immediately
+  const handleStateChange = async (e) => {
     const stateName = e.target.value;
     setSelectedState(stateName);
 
@@ -124,69 +152,13 @@ export default function Maps() {
       setSelectedDistrict("");
     }
 
-    setIsSubmitting(false);
     setHasSubmitted(false);
+    await fetchAllSites(stateName);
   };
 
   const handleDistrictChange = (e) => {
     setSelectedDistrict(e.target.value);
-    setIsSubmitting(false);
     setHasSubmitted(false);
-  };
-
-  // Function to fetch all sites
-  const fetchAllSites = async () => {
-    setSitesLoading(true);
-    try {
-      console.log("Fetching all sites...");
-      const response = await axiosInstance.get(
-        `/api/data/map/${selectedState}`
-      );
-      console.log("Sites API response:", response.data);
-      if (response.data && response.data.sites) {
-        setAllSites(response.data.sites);
-        console.log("All sites fetched:", response.data.sites.length, "sites");
-      } else {
-        console.log("No sites found in response");
-      }
-    } catch (error) {
-      console.error("Error fetching all sites:", error);
-      setAllSites([]);
-    } finally {
-      setSitesLoading(false);
-    }
-  };
-
-  const handleSubmit = async () => {
-    if (!selectedState) {
-      alert("Please select a state first");
-      return;
-    }
-
-    setIsSubmitting(true);
-    setHasSubmitted(false);
-
-    try {
-      if (allSites.length === 0) {
-        await fetchAllSites();
-      }
-
-      const response = await axiosInstance.get(
-        `/api/data/map/${selectedState}`
-      );
-      console.log("API Response:", response.data.site);
-    } catch (error) {
-      console.error("Error fetching map data:", error);
-    } finally {
-      setIsSubmitting(false);
-      setHasSubmitted(true);
-      setSubmitCount((c) => c + 1);
-      console.log("Submit completed:", {
-        selectedState,
-        selectedDistrict,
-        submitCount: submitCount + 1,
-      });
-    }
   };
 
   const rightSidebarContent =
@@ -201,67 +173,33 @@ export default function Maps() {
 
   return (
     <div className="flex flex-col lg:flex-row gap-4 min-h-[75vh]">
-      {/* Left Sidebar */}
-      <div className="lg:w-1/4 p-4 bg-white border border-gray-200 rounded-xl shadow-md">
-        <h3 className="text-lg font-bold mb-4">Filters</h3>
-        <div className="space-y-4">
-          <div>
-            <label className="block font-semibold mb-1">State/UTs</label>
-            <select
-              value={selectedState}
-              onChange={handleStateChange}
-              className="w-full border rounded-md p-2"
-            >
-              <option value="">Select State</option>
-              {statesData.states.map((state) => (
-                <option key={state.id} value={state.name}>
-                  {state.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block font-semibold mb-1">District</label>
-            <select
-              value={selectedDistrict}
-              onChange={handleDistrictChange}
-              className="w-full border rounded-md p-2"
-              disabled={!districts.length}
-            >
-              <option value="">Select District</option>
-              {districts.map((district) => (
-                <option key={district.id} value={district.name}>
-                  {district.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex justify-center">
-            {isSubmitting ? (
-              <Button size="sm" disabled className="w-full">
-                <Loader2Icon className="animate-spin mr-2" />
-                Please wait
-              </Button>
-            ) : (
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={handleSubmit}
-              >
-                SUBMIT
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-
       {/* Map Section */}
       <div
-        className="flex-1 bg-white border border-gray-200 rounded-xl shadow-lg p-3"
+        className="flex-1 bg-white border border-gray-200 rounded-xl shadow-lg "
         style={{ minHeight: "600px" }}
       >
+        <div className="flex justify-between items-center p-2">
+          <h2 className="font-semibold text-gray-800 mt-1">
+            Map:{" "}
+            <span className="text-indigo-600">
+              {selectedState || "Select a site"}
+            </span>
+          </h2>
+          <label className="block font-semibold mt-1">State/UTs</label>
+          <select
+            value={selectedState}
+            onChange={handleStateChange}
+            className="border rounded-md p-2"
+          >
+            <option value="">Select State</option>
+            {statesData.states.map((state) => (
+              <option key={state.id} value={state.name}>
+                {state.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <ChoroplethMap
           selectedState={selectedState}
           selectedDistrict={selectedDistrict}
@@ -269,7 +207,6 @@ export default function Maps() {
           allSites={allSites}
           sitesLoading={sitesLoading}
           onSiteSelect={(site) => {
-            console.log("Site selected:", site);
             setSelectedSite(site);
             setHasSubmitted(true);
           }}

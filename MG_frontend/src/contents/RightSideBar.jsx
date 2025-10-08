@@ -277,13 +277,13 @@ function RightSideBar({ siteData, aiData = {}, dataSource }) {
 
       {/* ---------------- Policy Recommendation ---------------- */}
       <div
-        className="flex-1 min-h-0  rounded-xl border-2 border-blue-200 p-4"
+        className="flex-1 min-h-0 rounded-xl border-2 border-blue-200 p-4 flex flex-col"
         style={{
           background:
             "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(238,246,251,0.95) 100%)",
         }}
       >
-        <div className="mb-4 pb-3 border-b-2 border-blue-300">
+        <div className="mb-4 pb-3 border-b-2 border-blue-300 flex-shrink-0">
           <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             <div className="w-10 h-10 bg-[#0A1931] rounded-lg flex items-center justify-center shadow-md">
               <CheckCircle className="w-6 h-6 text-white" />
@@ -327,7 +327,7 @@ function RightSideBar({ siteData, aiData = {}, dataSource }) {
           </div>
         ) : (
           <>
-            <div className="text-gray-800 text-sm overflow-y-auto flex-1 flex flex-col gap-4">
+            <div className="text-gray-800 text-sm overflow-y-auto flex-1 min-h-0 flex flex-col gap-4 pr-2">
               <div
                 className="rounded-xl shadow-lg p-4 border-l-4 border-blue-500 hover:shadow-xl transition-shadow duration-200"
                 style={{
@@ -453,7 +453,7 @@ function RightSideBar({ siteData, aiData = {}, dataSource }) {
               >
                 <h3 className="font-bold text-base mb-3 text-gray-900 flex items-center">
                   <Activity className="w-5 h-5 text-teal-500 mr-2" />
-                  Estimated Pollution Levels Under Existing Conditions
+                  Pollution Estimates (Current Conditions)
                 </h3>
                 {baselinePredictionData.length > 0 ? (
                   <div className="overflow-x-auto">
@@ -542,7 +542,7 @@ function RightSideBar({ siteData, aiData = {}, dataSource }) {
                   </div>
                 </h2>
 
-                <p className="text-gray-600 mt-2 ml-16">
+                <p className="text-gray-600 ml-16">
                   Comprehensive analysis of policy strategies and their
                   projected outcomes
                 </p>
@@ -696,7 +696,7 @@ function RightSideBar({ siteData, aiData = {}, dataSource }) {
               >
                 <h3 className="text-xl font-bold mb-3 text-gray-900 flex items-center">
                   <Activity className="w-6 h-6 text-teal-500 mr-3" />
-                  Estimated Pollution Levels Under Existing Conditions
+                  Pollution Estimates (Current Conditions)
                 </h3>
                 {baselinePredictionData.length > 0 ? (
                   <div className="overflow-x-auto">

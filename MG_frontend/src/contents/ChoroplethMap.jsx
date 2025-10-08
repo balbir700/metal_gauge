@@ -29,20 +29,20 @@ L.Icon.Default.mergeOptions({
 function getColor(d) {
   // Themed stepped blue scale
   return d > 7
-    ? "#0A1931"
+    ? "#A64C67"
     : d > 6
-    ? "#1A3D63"
+    ? "#D04C67"
     : d > 5
-    ? "#2E5C86"
+    ? "#EB5E60"
     : d > 4
-    ? "#4A7FA7"
+    ? "#FC8369"
     : d > 3
-    ? "#6AA6C6"
+    ? "#FDAF76"
     : d > 2
-    ? "#8FC0D8"
+    ? "#FEC981"
     : d > 0
-    ? "#B3CFE5"
-    : "#F6FAFD";
+    ? "#FEE49F"
+    : "#FEE49F";
 }
 
 // Style each feature
@@ -58,9 +58,83 @@ function style(feature) {
 }
 
 // Component to handle interactions
-function ChoroplethLayer({ onStateClick }) {
+// Update ChoroplethLayer to receive allSites and color states accordingly
+function ChoroplethLayer({ onStateClick, allSites }) {
   const map = useMap();
   const geoJsonRef = useRef();
+
+  // Determine contamination level for a site (high/mid/low)
+  const getContaminationLevel = (site) => {
+    const hpi = site.latestTest?.HPI;
+    const hei = site.latestTest?.HEI;
+
+    if ((typeof hpi === "number" && hpi > 100) || (typeof hei === "number" && hei > 5)) {
+      return "high";
+    }
+    if ((typeof hpi === "number" && hpi > 50) || (typeof hei === "number" && hei > 3)) {
+      return "mid";
+    }
+    return "low";
+  };
+
+  // Map contamination category to the legend color scale number
+  const contaminationColorValue = {
+    high: 8,
+    mid: 5,
+    low: 1,
+  };
+
+  // Compute color for a state based on majority site's contamination level
+
+const getStateFillColor = (stateName) => {
+  if (!allSites || allSites.length === 0) {
+    console.log("No sites data available");
+    return "#FEE49F"; // default low color
+  }
+  
+
+  const sitesInState = allSites.filter((site) => site.State === stateName);
+  console.log(`Sites found for state ${stateName}:`, sitesInState.length);
+
+  if (sitesInState.length === 0) return "#FEE49F";
+
+  const counts = sitesInState.reduce(
+    (acc, site) => {
+      const level = getContaminationLevel(site);
+      acc[level] = (acc[level] || 0) + 1;
+      return acc;
+    },
+    { high: 0, mid: 0, low: 0 }
+  );
+
+  console.log(`Contamination level counts for ${stateName}:`, counts);
+
+  const maxLevel = Object.keys(counts).reduce((a, b) =>
+    counts[a] > counts[b] ? a : b
+  );
+
+  console.log(`Majority contamination level for ${stateName}:`, maxLevel);
+
+  const fillColor = getColor(contaminationColorValue[maxLevel]);
+  console.log(`Color chosen for ${stateName}:`, fillColor);
+
+  return fillColor;
+};
+
+
+  // Override style function for GeoJSON to use fillColor from sites
+  const style = (feature) => {
+    const stateName = feature.properties?.ST_NM;
+    const fillColor = getStateFillColor(stateName);
+    return {
+      fillColor,
+      weight: 2,
+      opacity: 1,
+      color: "white",
+      dashArray: "3",
+      fillOpacity: 0.7,
+    };
+  };
 
   const onEachFeature = (feature, layer) => {
     layer.on({
@@ -77,25 +151,21 @@ function ChoroplethLayer({ onStateClick }) {
         if (geoJsonRef.current) geoJsonRef.current.resetStyle(e.target);
       },
       click: (e) => {
-        // First zoom to the clicked state
         map.fitBounds(e.target.getBounds());
         setTimeout(() => {
-          // keep current zoom (no dramatic change) — original intent preserved
           map.setZoom(map.getZoom());
-          onStateClick(feature.properties.ST_NM); // Switch to districts view for any state
+          onStateClick(feature.properties.ST_NM);
         }, 300);
       },
     });
 
-    // Correct popup syntax: pass HTML string
     try {
       const name = feature.properties && feature.properties.ST_NM;
       const density = feature.censuscode;
       layer.bindPopup(
         `<b>${name || "Unknown"}</b><br/>Density: ${density ?? "N/A"}`
       );
-    } catch (err) {
-      // Safe fallback
+    } catch {
       layer.bindPopup("State info");
     }
   };
@@ -109,6 +179,7 @@ function ChoroplethLayer({ onStateClick }) {
     />
   );
 }
+
 
 // Helper function to convert state name to file name
 function getStateFileName(stateName) {
@@ -463,13 +534,13 @@ function SitesMarkers({ onSiteSelect, selectedState, allSites, sitesLoading }) {
             (typeof hpi === "number" && hpi > 100) ||
             (typeof hei === "number" && hei > 5)
           )
-            return "#0A1931"; // high level
+            return "#A64C67"; // high level
           if (
             (typeof hpi === "number" && hpi > 50) ||
             (typeof hei === "number" && hei > 3)
           )
-            return "#4A7FA7"; // medium level
-          return "#B3CFE5"; // low level
+            return "#EB5E60"; // medium level
+          return "#FEE49F"; // low level
         };
 
         // Create custom icon
@@ -576,9 +647,7 @@ export default function ChoroplethMap({
 
   return (
     <div className="relative w-full h-[600px]">
-      <h3 className="mb-2 text-lg font-semibold">
-        {showDistricts ? `${selectedState} Districts` : ""}
-      </h3>
+      
       <MapContainer
         center={[20.5937, 78.9629]}
         zoom={4}
