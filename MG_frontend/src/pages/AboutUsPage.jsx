@@ -1,5 +1,5 @@
-import GraphicOne from "../assets/bgimage_sih.png";
-import GraphicTwo from "../assets/Image5_sih.png";
+import GraphicOne from "../assets/bgImage_sih.jpg";
+import GraphicTwo from "../assets/logo_sih.jpg";
 
 export default function AboutUsPage() {
   return (
